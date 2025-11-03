@@ -9,5 +9,7 @@ add_executable(untitled5 main.cpp
         src/sampling/ParallelGPUMergeSort.h
         src/CPUMergeSort.h
         src/sampling/ParallelGPUMergeSort.cpp
-        src/sampling/ParallelCPUMergeSort.h
-        src/sampling/ParallelCPUMergeSort.cpp)
+        src/sampling/ParallelCPU/MaximizedParallelCPUMergeSort.h
+        src/sampling/ParallelCPU/MaximizedParallelCPUMergeSort.cpp
+        src/sampling/ParallelCPU/FullParallelCPUMergeSort.cpp
+        src/sampling/ParallelCPU/FullParallelCPUMergeSort.h)
