@@ -4,8 +4,8 @@
 #include <algorithm>
 #include <random>
 #include "src/CPUMergeSort.h"
-#include "src/sampling/ParallelCPU/MaximizedParallelCPUMergeSort.h"
-#include "src/sampling/ParallelCPU/FullParallelCPUMergeSort.h"
+#include "src/ParallelCPU/MaximizedParallelCPUMergeSort.h"
+#include "src/ParallelCPU/FullParallelCPUMergeSort.h"
 
 using namespace std;
 
@@ -16,7 +16,7 @@ void sort_full_parallel_cpu(vector<int> list, int len);
 
 int main()
 {
-    vector<int> list = generate_list(200'000);
+    vector<int> list = generate_list(200000);
     int len = list.size();
 
     sort_base_cpu(list, len);
