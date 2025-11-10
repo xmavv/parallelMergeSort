@@ -4,24 +4,27 @@
 #include <algorithm>
 #include <random>
 #include "src/CPUMergeSort.h"
-#include "src/ParallelCPU/MaximizedParallelCPUMergeSort.h"
-#include "src/ParallelCPU/FullParallelCPUMergeSort.h"
+#include "src/parallelCPU/BothSidesParallelCPUMergeSort.h"
+#include "src/ParallelCPU/LeftSideParallelCPUMergeSort.h"
 
 using namespace std;
 
 vector<int> generate_list(int n);
-void sort_base_cpu(vector<int> list, int len);
-void sort_max_parallel_cpu(vector<int> list, int len);
-void sort_full_parallel_cpu(vector<int> list, int len);
+void sort_base_cpu(vector<int>& list, int len);
+void sort_left_parallel_cpu(vector<int>& list, int len);
+void sort_both_parallel_cpu(vector<int>& list, int len);
 
 int main()
 {
-    vector<int> list = generate_list(200000);
+    vector<int> list = generate_list(10'000'000);
+    vector<int> list_copy = list;
+    vector<int> list_copy2 = list;
+
     int len = list.size();
 
     sort_base_cpu(list, len);
-    sort_max_parallel_cpu(list, len);
-    sort_full_parallel_cpu(list, len);
+    sort_left_parallel_cpu(list_copy, len);
+    sort_both_parallel_cpu(list_copy2, len);
 
     return 0;
 }
@@ -47,13 +50,13 @@ void is_array_sorted(vector<int>& list)
     cout << "Sorted correctly: " << (is_sorted_correctly ? "Yes" : "No") << endl;
 }
 
-void sort_base_cpu(vector<int> list, int len)
+void sort_base_cpu(vector<int>& list, int len)
 {
     CPUMergeSort merge_sort(list);
 
     auto start = chrono::high_resolution_clock::now();
 
-    vector<int> sorted_list = merge_sort.sort(0, len-1);
+    vector<int> sorted_list = merge_sort.run(0, len-1);
 
     auto end = chrono::high_resolution_clock::now();
     auto duration = chrono::duration_cast<chrono::milliseconds>(end - start).count();
@@ -65,35 +68,35 @@ void sort_base_cpu(vector<int> list, int len)
 }
 
 
-void sort_max_parallel_cpu(vector<int> list, int len)
+void sort_left_parallel_cpu(vector<int>& list, int len)
 {
-    MaximizedParallelCPUMergeSort merge_sort(list, 10000, 4);
+    LeftSideParallelCPUMergeSort merge_sort(list, 10000, 7);
 
     auto start = chrono::high_resolution_clock::now();
 
-    vector<int> sorted_list = merge_sort.sort(0, len-1, 0);
+    vector<int> sorted_list = merge_sort.run(0, len-1, 0);
 
     auto end = chrono::high_resolution_clock::now();
     auto duration = chrono::duration_cast<chrono::milliseconds>(end - start).count();
 
-    cout << "[Maximized Parallel CPU Merge Sort] Elapsed time: " << duration << " ms" << endl;
+    cout << "[Left Side Parallel CPU Merge Sort] Elapsed time: " << duration << " ms" << endl;
 
     is_array_sorted(sorted_list);
     cout<<endl;
 }
 
-void sort_full_parallel_cpu(vector<int> list, int len)
+void sort_both_parallel_cpu(vector<int>& list, int len)
 {
-    FullParallelCPUMergeSort merge_sort(list, 4);
+    BothSidesParallelCPUMergeSort merge_sort(list, 10000, 3);
 
     auto start = chrono::high_resolution_clock::now();
 
-    vector<int> sorted_list = merge_sort.sort(0, len-1, 0);
+    vector<int> sorted_list = merge_sort.run(0, len-1, 0);
 
     auto end = chrono::high_resolution_clock::now();
     auto duration = chrono::duration_cast<chrono::milliseconds>(end - start).count();
 
-    cout << "[Full Parallel CPU Merge Sort] Elapsed time: " << duration << " ms" << endl;
+    cout << "[Both Sides Parallel CPU Merge Sort] Elapsed time: " << duration << " ms" << endl;
 
     is_array_sorted(sorted_list);
     cout<<endl;

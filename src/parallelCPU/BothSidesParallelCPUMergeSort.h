@@ -1,0 +1,30 @@
+#ifndef UNTITLED5_BOTHSIDESPARALLELCPUMERGESORT_H
+#define UNTITLED5_BOTHSIDESPARALLELCPUMERGESORT_H
+
+#include <vector>
+
+using namespace std;
+
+class BothSidesParallelCPUMergeSort
+{
+    vector<int> list;
+    int max_depth;
+    int parallel_threshold;
+
+    void sort_parallel(int left, int right, int depth);
+    void sort_sequential(int left, int right);
+    void merge(int left, int mid, int right);
+
+public:
+
+    BothSidesParallelCPUMergeSort(vector<int>& list, int parallel_threshold, int max_depth);
+
+    void set_list(vector<int>& list);
+    void set_parallel_threshold(int parallel_threshold);
+    void set_max_depth(int max_depth);
+
+    vector<int> run(int left, int right, int depth);
+};
+
+
+#endif //UNTITLED5_BOTHSIDESPARALLELCPUMERGESORT_H

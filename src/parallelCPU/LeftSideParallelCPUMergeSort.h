@@ -5,7 +5,7 @@
 
 using namespace std;
 
-class MaximizedParallelCPUMergeSort
+class LeftSideParallelCPUMergeSort
 {
 private:
 
@@ -13,18 +13,19 @@ private:
     int max_depth;
     int parallel_threshold;
 
+    void sort_parallel(int left, int right, int depth);
     void sort_sequential(int left, int right);
     void merge(int left, int mid, int right);
 
 public:
 
-    MaximizedParallelCPUMergeSort(vector<int>& list, int parallel_threshold, int max_depth);
+    LeftSideParallelCPUMergeSort(vector<int>& list, int parallel_threshold, int max_depth);
 
     void set_list(vector<int>& list);
     void set_parallel_threshold(int parallel_threshold);
     void set_max_depth(int max_depth);
 
-    vector<int> sort(int left, int right, int depth);
+    vector<int> run(int left, int right, int depth);
 };
 
 

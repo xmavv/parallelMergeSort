@@ -3,15 +3,18 @@
 
 #include <vector>
 
+using namespace std;
+
 class CPUMergeSort {
 private:
-    std::vector<int> list;
+    vector<int> list;
     void merge(int left, int mid, int right);
+    void sort(int left, int right);
 
 public:
-    CPUMergeSort(std::vector<int>& list);
-    void set_list(std::vector<int>& list);
-    std::vector<int> sort(int left, int right);
+    CPUMergeSort(vector<int>& list);
+    void set_list(vector<int>& list);
+    vector<int> run(int left, int right);
 };
 
 

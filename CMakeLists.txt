@@ -11,11 +11,11 @@ add_executable(untitled5 main.cpp
         src/CPUMergeSort.cpp
         src/CPUMergeSort.h
         src/parallelGPU/RecursiveGPUMergeSort.cu
-        src/parallelCPU/MaximizedParallelCPUMergeSort.h
-        src/parallelCPU/MaximizedParallelCPUMergeSort.cpp
-        src/parallelCPU/FullParallelCPUMergeSort.cpp
-        src/parallelCPU/FullParallelCPUMergeSort.h
+        src/parallelCPU/LeftSideParallelCPUMergeSort.h
+        src/parallelCPU/LeftSideParallelCPUMergeSort.cpp
         src/parallelGPU/IterativeGPUMergeSort.cu
+        src/parallelCPU/BothSidesParallelCPUMergeSort.cpp
+        src/parallelCPU/BothSidesParallelCPUMergeSort.h
 )
 
 #target_compile_options(GPU PRIVATE $<$<COMPILE_LANGUAGE:CUDA>:-Xcompiler=-Wall>)
