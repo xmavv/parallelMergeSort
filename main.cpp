@@ -70,7 +70,7 @@ void sort_base_cpu(vector<int>& list, int len)
 
 void sort_left_parallel_cpu(vector<int>& list, int len)
 {
-    LeftSideParallelCPUMergeSort merge_sort(list, 10000, 7);
+    LeftSideParallelCPUMergeSort merge_sort(list, 10000, 8);
 
     auto start = chrono::high_resolution_clock::now();
 
