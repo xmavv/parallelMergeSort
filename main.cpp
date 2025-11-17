@@ -16,14 +16,14 @@ void sort_both_parallel_cpu(vector<int>& list, int len);
 
 int main()
 {
-    vector<int> list = generate_list(10'000'000);
+    vector<int> list = generate_list(200000);
     vector<int> list_copy = list;
     vector<int> list_copy2 = list;
 
     int len = list.size();
 
     sort_base_cpu(list, len);
-    sort_left_parallel_cpu(list_copy, len);
+//    sort_left_parallel_cpu(list_copy, len);
     sort_both_parallel_cpu(list_copy2, len);
 
     return 0;

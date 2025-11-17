@@ -16,6 +16,8 @@ add_executable(untitled5 main.cpp
         src/parallelGPU/IterativeGPUMergeSort.cu
         src/parallelCPU/BothSidesParallelCPUMergeSort.cpp
         src/parallelCPU/BothSidesParallelCPUMergeSort.h
+        src/parallelGPU/EnhancedRecursiveGPUMergeSort.cu
+        src/parallelGPU/Benchmark.cpp
 )
 
 #target_compile_options(GPU PRIVATE $<$<COMPILE_LANGUAGE:CUDA>:-Xcompiler=-Wall>)
